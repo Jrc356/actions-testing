@@ -1,0 +1,26 @@
+name: "Test"
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  set-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.step1.outputs.dirs }}
+    steps:
+      - id: step1
+        run: |
+          dirs=$(ls testdir | jq -R -s -c 'split("\n")[:-1]')
+          echo "::set-output name=dirs::$dirs"
+
+  main-job:
+    runs-on: ubuntu-latest
+    needs: set-matrix
+    strategy:
+      matrix:
+        environment: ${{ fromJson(needs.set-matrix.outputs.dirs) }}
+    steps:
+      - run: echo ${{ matrix.environment }}
