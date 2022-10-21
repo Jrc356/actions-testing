@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Parse jobs to ignore
         run: |
-          export jobs={$JOBS_TO_IGNORE//\n/ }
+          export jobs=${JOBS_TO_IGNORE//\n/ }
           echo $jobs
           echo "::set-env name=JOBS_TO_IGNORE::$jobs"
       - name: Run Merge Gatekeeper
