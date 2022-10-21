@@ -11,6 +11,6 @@ jobs:
     steps:
       - run: exit 1
       - run: echo "hi"
-        if: ${{ failure() && github.ref_name == 'master' }}
+        if: ${{ failure() && github.ref_name == 'test' }}
       
       
