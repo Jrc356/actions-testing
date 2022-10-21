@@ -20,9 +20,9 @@ jobs:
     steps:
       - name: Parse jobs to ignore
         run: |
-          export jobs=${JOBS_TO_IGNORE//\n/ }
+          jobs=${JOBS_TO_IGNORE//\n/ }
           echo $jobs
-          echo "::set-env name=JOBS_TO_IGNORE::$jobs"
+          echo "JOBS_TO_IGNORE=$jobs" >> $GITHUB_ENV
       - name: Run Merge Gatekeeper
         uses: upsidr/merge-gatekeeper@v1
         with:
