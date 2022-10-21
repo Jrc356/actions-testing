@@ -28,4 +28,4 @@ jobs:
         uses: upsidr/merge-gatekeeper@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          ignored: $JOBS_TO_IGNORE
+          # ignored: $JOBS_TO_IGNORE
