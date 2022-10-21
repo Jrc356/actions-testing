@@ -22,6 +22,7 @@ jobs:
           ignored: |
             test1,
             test2,
-            test3
+            test3,
+            main-job (myfile1.txt)
           ref: refs/heads/master
           timeout: 30
