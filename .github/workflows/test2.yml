@@ -3,7 +3,10 @@ name: Merge Gatekeeper
 on:
   pull_request:
     branches:
-      - main
+      - master
+  push:
+    branches:
+      - master
 
 env:
   JOBS_TO_IGNORE: |
