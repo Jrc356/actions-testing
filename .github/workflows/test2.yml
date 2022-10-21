@@ -14,12 +14,7 @@ jobs:
     steps:
       - name: Parse jobs to ignore
         run: |
-          jobs="${JOBS_TO_IGNORE//$'\n'/ }"
-          echo "$jobs"
-          echo "JOBS_TO_IGNORE=$jobs" >> $GITHUB_ENV
-          echo "$GITHUB_REPOSITORY"
-      - name: validate jobs to ignore
-        run: echo $JOBS_TO_IGNORE
+          echo "$GITHUB_REF"
       - name: Run Merge Gatekeeper
         uses: upsidr/merge-gatekeeper@v1
         with:
