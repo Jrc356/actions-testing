@@ -29,7 +29,5 @@ jobs:
       - run: |
           if [[ ${{ matrix.environment }} == "myfile1.txt" ]]; then
             sleep 605
-          elif [[ ${{ matrix.environment }} == "myfile2.txt" ]]; then
-            exit 1
           fi
           echo ${{ matrix.environment }}
