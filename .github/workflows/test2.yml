@@ -1,16 +1,27 @@
-name: "Test"
+name: Merge Gatekeeper
 
 on:
-  push:
+  pull_request:
     branches:
-      - "master"
+      - main
+
+env:
+  JOBS_TO_IGNORE: |
+    test1,
+    test2,
+    test3
 
 jobs:
-  main-job:
+  merge-gatekeeper:
     runs-on: ubuntu-latest
     steps:
-      - run: exit 1
-      - run: echo "hi"
-        if: ${{ failure() && github.ref_name == 'test' }}
-      
-      
+      - name: Parse jobs to ignore
+        run: |
+          export jobs={$JOBS_TO_IGNORE//\n/ }
+          echo $jobs
+          echo "::set-env name=JOBS_TO_IGNORE::$jobs"
+      - name: Run Merge Gatekeeper
+        uses: upsidr/merge-gatekeeper@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ignored: $JOBS_TO_IGNORE
