@@ -29,4 +29,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ignored: $JOBS_TO_IGNORE
-          ref: ${{ github.event.push.head.sha }}
+          ref: $GITHUB_REF
