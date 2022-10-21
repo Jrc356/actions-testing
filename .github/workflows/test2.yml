@@ -19,6 +19,6 @@ jobs:
         uses: upsidr/merge-gatekeeper@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          ignored: test1, test2, test3, main-job (myfile1.txt)
+          ignored: test1,test2,test3,main-job (myfile1.txt)
           ref: refs/heads/master
           timeout: 30
