@@ -24,3 +24,4 @@ jobs:
             test2,
             test3
           ref: refs/heads/master
+          timeout: 30
