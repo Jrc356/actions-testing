@@ -28,7 +28,7 @@ jobs:
         run: echo $JOBS_TO_IGNORE
       - name: Run Merge Gatekeeper
         uses: upsidr/merge-gatekeeper@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ignored: $JOBS_TO_IGNORE
-          ref: $GITHUB_REF
+        env:
+          INPUT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_IGNORED: $JOBS_TO_IGNORE
+          INPUT_REF: $GITHUB_REF
