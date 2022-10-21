@@ -26,4 +26,10 @@ jobs:
       matrix:
         environment: ${{ fromJson(needs.set-matrix.outputs.dirs) }}
     steps:
-      - run: echo ${{ matrix.environment }}
+      - run: |
+          if [[ ${{ matrix.environment }} == "myfile1.txt" ]];
+            sleep 605
+          elif [[ ${{ matrix.environment }} == "myfile2.txt" ]];
+            exit 1
+          fi
+          echo ${{ matrix.environment }}
