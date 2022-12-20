@@ -18,6 +18,10 @@ jobs:
         run: |
           dirs=$(ls testdir | jq -R -s -c 'split("\n")[:-1]')
           echo "::set-output name=dirs::$dirs"
+          echo "NAME=test" >> $GITHUB_OUTPUT
+          
+      - name: Run ${{ steps.step1.outputs.NAME }}
+        run: echo "hi"
 
   main-job:
     runs-on: ubuntu-latest
