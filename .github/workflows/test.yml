@@ -17,21 +17,13 @@ jobs:
       - id: step1
         run: |
           dirs=$(ls testdir | jq -R -s -c 'split("\n")[:-1]')
-          echo "::set-output name=dirs::$dirs"
-          echo "NAME=test" >> $GITHUB_OUTPUT
+          echo "NAME=true" >> $GITHUB_OUTPUT
           
-      - name: Run ${{ steps.step1.outputs.NAME }}
-        run: echo "hi"
-
-  main-job:
-    runs-on: ubuntu-latest
-    needs: set-matrix
-    strategy:
-      matrix:
-        environment: ${{ fromJson(needs.set-matrix.outputs.dirs) }}
-    steps:
-      - run: |
-          if [[ ${{ matrix.environment }} == "myfile1.txt" ]]; then
-            sleep 605
+      - name: Run
+        run: |
+          echo "${{ steps.step1.outputs.NAME }}"
+          if ${{ steps.step1.outputs.NAME }}; then
+            echo "hi"
+          else
+            echo "bye"
           fi
-          echo ${{ matrix.environment }}
