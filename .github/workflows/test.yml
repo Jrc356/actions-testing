@@ -17,7 +17,7 @@ jobs:
       - id: step1
         run: |
           dirs=$(ls testdir | jq -R -s -c 'split("\n")[:-1]')
-          echo "NAME=true" >> $GITHUB_OUTPUT
+          echo "NAME=false" >> $GITHUB_OUTPUT
           
       - name: Run
         run: |
@@ -27,3 +27,7 @@ jobs:
           else
             echo "bye"
           fi
+        
+      - name: Run if
+        if: steps.step1.outputs.NAME
+        run: echo "hi"
