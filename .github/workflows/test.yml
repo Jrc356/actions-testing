@@ -29,5 +29,5 @@ jobs:
           fi
         
       - name: Run if
-        if: steps.step1.outputs.NAME
+        if: steps.step1.outputs.NAME == 'true'
         run: echo "hi"
