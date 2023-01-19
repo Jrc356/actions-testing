@@ -1,9 +1,11 @@
 name: "Caller"
 
 on:
-  push:
-    branches:
-      - "master"
+  workflow_dispatch:
+    inputs:
+      workflow:
+        type: text
+        required: true
 
 jobs:
   set-env:
@@ -13,4 +15,4 @@ jobs:
 
   call:
     needs: set-env
-    uses: ./.github/workflows/${{ steps.set-env.outputs.WORKFLOW }}.yml
+    uses: ./.github/workflows/${{ inputs.workflow }}.yml
