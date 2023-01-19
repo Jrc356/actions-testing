@@ -1,0 +1,16 @@
+name: "Caller"
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  set-env:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "WORKFLOW=callable1" >> $GITHUB_OUTPUT
+
+  call:
+    needs: set-env
+    uses: ./.github/workflows/${{ steps.set-env.outputs.WORKFLOW }}.yml
