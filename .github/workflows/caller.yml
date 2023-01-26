@@ -3,16 +3,11 @@ name: "Caller"
 on:
   workflow_dispatch:
     inputs:
-      workflow:
+      service:
         type: text
         required: true
 
 jobs:
-  set-env:
-    runs-on: ubuntu-latest
+  call-${{ inputs.service }}:
     steps:
-      - run: echo "WORKFLOW=callable1" >> $GITHUB_OUTPUT
-
-  call:
-    needs: set-env
-    uses: ./.github/workflows/${{ inputs.workflow }}.yml
+      - run: echo ${{ inputs.service }}
