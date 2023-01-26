@@ -8,7 +8,8 @@ on:
         required: true
 
 jobs:
-  call-${{ inputs.service }}:
+  run:
+    name: run ${{ inputs.service }}
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ inputs.service }}
