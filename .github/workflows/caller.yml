@@ -9,5 +9,6 @@ on:
 
 jobs:
   call-${{ inputs.service }}:
+    runs-on: ubuntu-latest
     steps:
       - run: echo ${{ inputs.service }}
