@@ -2,14 +2,19 @@ name: "Caller"
 
 on:
   workflow_dispatch:
-    inputs:
-      service:
-        type: text
-        required: true
 
 jobs:
   run:
-    name: run ${{ inputs.service }}
+    name: run
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ inputs.service }}
+      - id: test
+        run: echo "MY_VAL=1" >> $GITHUB_OUTPUT
+      
+      - run: |
+          echo "${{ steps.test.outputs.MY_VAL }}"
+          if [[ ${{ steps.test.outputs.MY_VAL }} > 2 ]]; then
+            echo "yes"
+          else
+            echo "no"
+          fi
