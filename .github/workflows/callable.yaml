@@ -1,0 +1,22 @@
+name: callable
+
+on:
+  workflow_call:
+    inputs:
+      gate:
+        required: false
+        type: string
+        default: "true"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "${{ inputs.gate }}"
+          if [[ "${{inputs.gate}}" == "true" ]]; then
+            echo "Gate is true"
+          else
+            echo "Gate is false"
+          fi
+          echo "${{ inputs.gate == 'true' && 'gate is true' || 'gate is false' }}"

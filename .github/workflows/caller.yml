@@ -5,32 +5,20 @@ on:
 
 jobs:
   run:
-    name: run
-    runs-on: ubuntu-latest
-    steps:
-      - id: test
-        run: echo "MY_VAL=1" >> $GITHUB_OUTPUT
-      
-      - run: |
-          echo "${{ steps.test.outputs.MY_VAL }}"
-          if [[ ${{ steps.test.outputs.MY_VAL }} > 2 ]]; then
-            echo "yes"
-          else
-            echo "no"
-          fi
-          
-      - run: |
-          echo "${{ steps.test.outputs.MY_VAL }}"
-          if [[ ${{ steps.test.outputs.MY_VAL }} > 0 ]]; then
-            echo "yes"
-          else
-            echo "no"
-          fi
-          
-      - run: |
-          echo "${{ steps.test.outputs.MY_VAL }}"
-          if [[ ${{ steps.test.outputs.MY_VAL }} == 1 ]]; then
-            echo "yes"
-          else
-            echo "no"
-          fi
+    uses: ./.github/workflows/callable.yaml
+    with:
+      gate: "true"
+  run2:
+    uses: ./.github/workflows/callable.yaml
+    with:
+      gate: "false"
+  run3:
+    uses: ./.github/workflows/callable.yaml
+  run4:
+    uses: ./.github/workflows/callable.yaml
+    with:
+      gate: true
+  run5:
+    uses: ./.github/workflows/callable.yaml
+    with:
+      gate: false
