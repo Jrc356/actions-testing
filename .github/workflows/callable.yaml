@@ -19,4 +19,4 @@ jobs:
           else
             echo "Gate is false"
           fi
-          echo "${{ inputs.gate == 'true' && 'gate is true' || 'gate is false' }}"
+          echo "${{ inputs.gate == 'true' && '' || 'gate is false' }}"
