@@ -2,23 +2,13 @@ name: "Caller"
 
 on:
   workflow_dispatch:
+    inputs:
+      workflow:
+        type: choice
+        options:
+          - callable1
+          - callable2
 
 jobs:
-  run:
-    uses: ./.github/workflows/callable.yaml
-    with:
-      gate: "true"
-  run2:
-    uses: ./.github/workflows/callable.yaml
-    with:
-      gate: "false"
-  run3:
-    uses: ./.github/workflows/callable.yaml
-  run4:
-    uses: ./.github/workflows/callable.yaml
-    with:
-      gate: true
-  run5:
-    uses: ./.github/workflows/callable.yaml
-    with:
-      gate: false
+  call:
+    uses: ./.github/workflows/${{ inputs.workflow }}.yml
