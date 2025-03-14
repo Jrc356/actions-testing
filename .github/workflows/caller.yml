@@ -11,4 +11,4 @@ on:
 
 jobs:
   call:
-    uses: ./.github/workflows/${{ inputs.workflow }}.yml
+    uses: ./.github/workflows/${{ inputs.workflow }}.yaml
